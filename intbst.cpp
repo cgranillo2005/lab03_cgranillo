@@ -46,6 +46,7 @@ bool IntBST::insert(int value, Node *n) {
             return insert(value, n->left); // Move to the left
         } else {
             n->left = new Node(value); // This places the node after finding an empty slot
+            n->left->parent = n;
             return true; // Return true when it is found
         }
     } else {
@@ -53,6 +54,7 @@ bool IntBST::insert(int value, Node *n) {
             return insert(value, n->right);
         } else {
             n->right = new Node(value);
+            n->right->parent = n;
             return true;
         }
     }
@@ -118,7 +120,7 @@ int IntBST::count() const {
 int IntBST::count(Node *n) const {
     if (!n) return 0;
 
-    return sum(n->left) + sum(n->right) + 1;
+    return count(n->left) + count(n->right) + 1;
 }
 
 // IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
