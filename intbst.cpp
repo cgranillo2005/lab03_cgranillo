@@ -202,7 +202,7 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const {
 
 // returns the successor value of the given value or 0 if there is none
 int IntBST::getSuccessor(int value) const{
-    Node* succ = getPredecessorNode(value);
+    Node* succ = getSuccessorNode(value);
     if (!succ) return 0;
     return succ->info;
 }
