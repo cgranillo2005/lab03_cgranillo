@@ -169,19 +169,19 @@ IntBST::Node* IntBST::getPredecessorNode(int value) const{
     
 }
 
-// returns the predecessor value of the given value or 0 if there is none
+
 int IntBST::getPredecessor(int value) const{
     Node* pred = getPredecessorNode(value);
     if (!pred) return 0;
     return pred->info;
 }
 
-// returns the Node containing the successor of the given value
+
 IntBST::Node* IntBST::getSuccessorNode(int value) const {
     Node* n = getNodeFor(value, root);   // find node
     if (!n) return nullptr;              // value not in tree
 
-    // Case 1: has right subtree → leftmost node in right subtree
+    
     if (n->right) {
         Node* s = n->right;
         while (s->left) {
@@ -190,41 +190,40 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const {
         return s;
     }
 
-    // Case 2: no right subtree → go up parent chain
+    
     Node* s = n->parent;
-    while (s && n == s->right) {  // move up until we come from a left child
+    while (s && n == s->right) {  
         n = s;
         s = s->parent;
     }
 
-    return s; // might be nullptr if no successor exists
-}
+    return s; 
 
-// returns the successor value of the given value or 0 if there is none
+
 int IntBST::getSuccessor(int value) const{
     Node* succ = getSuccessorNode(value);
     if (!succ) return 0;
     return succ->info;
 }
 
-// deletes the Node containing the given value from the tree
-// returns true if the node exist and was deleted or false if the node does not exist
+
 bool IntBST::remove(int value) {
     Node* n = getNodeFor(value, root);
-    if (!n) return false;  // not found
+    if (!n) return false;  
 
-    // Case 1: two children → replace with successor
+    
     if (n->left && n->right) {
         Node* succ = getSuccessorNode(value);
-        n->info = succ->info;
-        return remove(succ->info); // remove successor node recursively
+        int successorValue = succ->info;
+        n->info = successorValue;
+        n = succ;
     }
 
-    // Case 2 & 3: 0 or 1 child
+    
     Node* child = (n->left) ? n->left : n->right;
 
     if (!n->parent) {
-        // removing root
+        
         root = child;
         if (child) child->parent = nullptr;
     } else if (n == n->parent->left) {
