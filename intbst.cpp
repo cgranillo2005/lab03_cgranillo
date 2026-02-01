@@ -198,7 +198,7 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const {
     }
 
     return s; 
-
+}
 
 int IntBST::getSuccessor(int value) const{
     Node* succ = getSuccessorNode(value);
