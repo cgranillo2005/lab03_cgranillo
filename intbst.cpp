@@ -219,7 +219,7 @@ bool IntBST::remove(int value) {
         n = succ;
     }
 
-    Node* child = (n->left) ? n-?left: n->right;
+    Node* child = (n->left) ? n->left : n->right;
 
     if (child) {
         child->parent = n->parent;
