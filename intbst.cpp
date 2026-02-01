@@ -208,32 +208,30 @@ int IntBST::getSuccessor(int value) const{
 
 
 bool IntBST::remove(int value) {
-    Node* n = getNodeFor(value, root);
-    if (!n) return false;  
+    Node *n = getNodeFor(value, root);
+    if (!n) return false;
 
-    
     if (n->left && n->right) {
         Node* succ = getSuccessorNode(value);
-        int successorValue = succ->info;
-        n->info = successorValue;
+
+        n->info = succ->info;
+
         n = succ;
     }
 
-    
-    Node* child = (n->left) ? n->left : n->right;
+    Node* child = (n->left) ? n-?left: n->right;
+
+    if (child) {
+        child->parent = n->parent;
+    }
 
     if (!n->parent) {
-        
         root = child;
-        if (child) child->parent = nullptr;
-    } else if (n == n->parent->left) {
-        n->parent->left = child;
-        if (child) child->parent = n->parent;
-    } else {
+    } else if (n == n->parent->left){
         n->parent->right = child;
-        if (child) child->parent = n->parent;
     }
 
     delete n;
     return true;
+    
 }
