@@ -171,6 +171,7 @@ IntBST::Node* IntBST::getPredecessorNode(int value) const{
 int IntBST::getPredecessor(int value) const{
     Node* pred = getPredecessorNode(value);
     if (!pred) return 0;
+    return pred->info;
 }
 
 // returns the Node containing the successor of the given value
