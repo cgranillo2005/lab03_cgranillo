@@ -228,7 +228,9 @@ bool IntBST::remove(int value) {
     if (!n->parent) {
         root = child;
     } else if (n == n->parent->left){
-        n->parent->right = child;
+        n->parent->left = child;
+    } else {
+        n->parent->right = child
     }
 
     delete n;
