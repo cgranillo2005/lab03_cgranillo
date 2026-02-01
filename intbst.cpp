@@ -230,7 +230,7 @@ bool IntBST::remove(int value) {
     } else if (n == n->parent->left){
         n->parent->left = child;
     } else {
-        n->parent->right = child
+        n->parent->right = child;
     }
 
     delete n;
